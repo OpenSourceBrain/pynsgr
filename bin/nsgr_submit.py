@@ -4,7 +4,7 @@ import os
 import pynsgr.commands as CipresCommands
 
 def main():
-	return CipresCommands.tooltest(sys.argv)
+	return CipresCommands.nsgr_submit(sys.argv)
 
 if __name__ == "__main__":
     sys.exit(main())

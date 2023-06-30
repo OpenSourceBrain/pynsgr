@@ -19,9 +19,9 @@ import pynsgr.client as CipresClient
 
 sys.stdout.flush()
 
-def cipresjob(argv):
+def nsgr_job(argv):
     """
-    cipresjob.py OPTIONS 
+    nsgr_job.py OPTIONS 
 
     Where OPTIONS are:
 
@@ -44,13 +44,13 @@ def cipresjob(argv):
         the job if it's waiting to run or running.
 
     For example:
-        cipresjob.py -l
+        nsgr_job.py -l
             list the user's jobs
-        cipresjob.py -j JOBHANDLE
+        nsgr_job.py -j JOBHANDLE
             shows status of the job whose jobhandle is JOBHANDLE
-        cipresjob.py -j JOBHANDLE -d
+        nsgr_job.py -j JOBHANDLE -d
             download's results of the job whose jobhandle is JOBHANDLE
-        cipresjob.py -j JOBHANDLE -r
+        nsgr_job.py -j JOBHANDLE -r
             cancel and remove the specified job. 
     """
     jobHandle = None
@@ -66,7 +66,7 @@ def cipresjob(argv):
         if opt in ("-j"):
             jobHandle = arg
         elif opt in ("-h"):
-            print((cipresjob.__doc__))
+            print((nsgr_job.__doc__))
             return 0
         if opt in ("-l"):
             action="list"
@@ -95,7 +95,7 @@ def cipresjob(argv):
         CipresClient.verbose = True
 
     if action != "list" and not jobHandle:
-        print((cipresjob.__doc__))
+        print((nsgr_job.__doc__))
         return 1
     try:
         if action == "list":    
@@ -125,7 +125,7 @@ def cipresjob(argv):
                 print("Job isn't finished. Downloading working dir files to %s" % (os.path.abspath(resultsdir)))
                 job.downloadResults(directory=resultsdir, final=False)
             return 0 
-        print((cipresjob.__doc__))
+        print((nsgr_job.__doc__))
         return 1
     except CipresClient.ValidationError as ve:
         print(ve.asString())
@@ -141,9 +141,9 @@ def cipresjob(argv):
         return 2
         
 # Call this with the complete sys.argv array
-def tooltest(argv):
+def nsgr_submit(argv):
     """
-        tooltest.py TEMPLATE_DIRECTORY validate|run [results_directory] 
+        nsgr_submit.py TEMPLATE_DIRECTORY validate|run [results_directory] 
         
         Where TEMPLATE_DIRECTORY is the name of a directory that contains the job's input data files and
         two property files named testInput.properties and testParam.properties.
@@ -159,23 +159,23 @@ def tooltest(argv):
         
         [results_directory]
             Absolute or relative path of a directory to which results will be downloaded.  If the directory 
-            doesn't exist, tooltest.py will create it. Intermediate directories, however, will not be created.
+            doesn't exist, nsgr_submit.py will create it. Intermediate directories, however, will not be created.
             If results_directory isn't specified, the default is directory name is ./jobhandle where jobhandle 
             is the CIPRES assigned job handle, a long guid, starting with "NGBW-".
     """
 
     if not argv or len(argv) < 3:
-        print(tooltest.__doc__)
+        print(nsgr_submit.__doc__)
         return 1
     template = argv[1]
     action = argv[2]
     if not os.path.isdir(template):
         print("%s is not a valid TEMPLATE_DIRECTORY" % (template))
-        print(tooltest.__doc__)
+        print(nsgr_submit.__doc__)
         return 1
     if action != "validate" and action != "run":
         print("second argument must be either validate or run")
-        print(tooltest.__doc__)
+        print(nsgr_submit.__doc__)
         return 1
     resultsdir = None
     if len(argv) > 3:
@@ -227,7 +227,7 @@ def tooltest(argv):
 
 
 def main():
-    return cipresjob(sys.argv)
+    return nsgr_job(sys.argv)
     
 if __name__ == "__main__":
     sys.exit(main())
