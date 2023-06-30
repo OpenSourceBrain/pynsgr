@@ -1,16 +1,16 @@
 from setuptools import setup
 
-setup(name='python_cipres',
+setup(name='pynsgr',
 
     version='0.9.1',
 
-    description='CIPRES REST API Client',
+    description='Neuroscience Gateway REST API Client - based on CIPRES REST API Client',
 
-    long_description = open('README.txt').read() + open('CHANGES.txt').read(),
+    long_description = open('README.md').read(),
 
-    url='http://www.phylo.org/restusers',
+    url='https://github.com/OpenSourceBrain/pynsgr',
 
-    author='Terri Schwartz',
+    author='Terri Schwartz, Padraig Gleeson',
 
     author_email='terri@sdsc.edu',
 
@@ -25,7 +25,7 @@ setup(name='python_cipres',
 
     ],
 
-    keywords='cipres cra phylogenetics xsede',
+    keywords='NSGR xsede',
 
 
     install_requires=[
@@ -35,11 +35,11 @@ setup(name='python_cipres',
     ],
 
     scripts=[
-        "bin/tooltest.py",
-        "bin/cipresjob.py",
+        "bin/nsgr_submit.py",
+        "bin/nsgr_job.py",
     ],
 
-    packages=['python_cipres'],
+    packages=['pynsgr'],
 
     # It seems that with "setup.py sdist", MANIFEST.in controls which extra files are
     # put into the sdist archive.  However those extra files won't be installed to user's

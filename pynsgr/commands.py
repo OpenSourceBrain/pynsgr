@@ -14,8 +14,8 @@ import shutil
 import traceback
 import requests
 import xml.etree.ElementTree as ET
-import python_cipres.pyjavaproperties as Props
-import python_cipres.client as CipresClient
+import pynsgr.pyjavaproperties as Props
+import pynsgr.client as CipresClient
 
 sys.stdout.flush()
 

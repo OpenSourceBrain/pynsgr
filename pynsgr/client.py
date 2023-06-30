@@ -11,7 +11,7 @@ import shutil
 import traceback
 import requests
 import xml.etree.ElementTree as ET
-import python_cipres.pyjavaproperties as Props
+import pynsgr.pyjavaproperties as Props
 
 # Flush stdout for debugging
 sys.stdout.flush()
