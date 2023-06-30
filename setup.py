@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='python_cipres',
 
-    version='0.9',
+    version='0.9.1',
 
     description='CIPRES REST API Client',
 

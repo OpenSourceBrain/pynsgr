@@ -460,9 +460,11 @@ def main():
     try:
 
         job = client.submitJob(
-            {"toolId" : "CLUSTALW", "runtime_" : ".1"},
-            {"infile_" : "/users/u4/terri/samplefiles/fasta/ex1.fasta"},
-            {"statusEmail" : "true"}, validateOnly=True)
+            {"toolId" : "PY_EXPANSE", "runtime_" : ".1"},
+            {"infile_" : "examples/nsgr_tests/input.zip"},
+            {"statusEmail" : "true"}, validateOnly=False)
+        print(job.jobUrl)
+        print(job.jobHandle)
         job.show(messages=True)
 
         """
@@ -472,7 +474,7 @@ def main():
 
             This functionality required an update to version 2.5.3 of the Requests library and
             changes to the implementation of submitJob.
-        """
+        
         job = client.submitJob(
             [
                 ("toolId", "JMODELTEST2_XSEDE"),
@@ -492,7 +494,7 @@ def main():
             ],
             {"infile_" : "/users/u4/terri/samplefiles/fasta/ex1.fasta"},
             {"statusEmail" : "true"}, validateOnly=True)
-        job.show(messages=True)
+        job.show(messages=True)"""
         return 1
 
     except ValidationError as ve:

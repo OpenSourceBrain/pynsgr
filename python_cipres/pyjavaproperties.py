@@ -85,7 +85,8 @@ class Properties(object):
     def __str__(self):
         s='{'
         for key,value in list(self._props.items()):
-            s = ''.join((s,key,'=',value,', '))
+            print("%s = %s"%(key,value))
+            s = ''.join((s,key,'=',str(value),', '))
 
         s=''.join((s[:-2],'}'))
         return s
@@ -391,7 +392,7 @@ class Properties(object):
 
 if __name__=="__main__":
     p = Properties()
-    p.load(open('test2.properties'))
+    p.load(open('/Users/padraig/pycipres.conf'))
     p.list()
     print(p)
     print(list(p.items()))
