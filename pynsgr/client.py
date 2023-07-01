@@ -460,7 +460,11 @@ def main():
     try:
 
         job = client.submitJob(
-            {"toolId" : "PY_EXPANSE", "runtime_" : ".1"},
+            {"toolId" : "PY_EXPANSE", 
+             "runtime_" : ".1", 
+             "number_cores_" : "1",
+             "number_nodes_" : "1",
+             "tasks_per_node_" : "1"},
             {"infile_" : "examples/nsgr_tests/input.zip"},
             {"statusEmail" : "true"}, validateOnly=False)
         print(job.jobUrl)
