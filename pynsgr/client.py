@@ -518,7 +518,7 @@ def main():
         return 1
     except ET.ParseError as pe:
         print("Unexpected response cannot be parsed.  Parsing error message: %s" % (pe))
-        if vervose:
+        if verbose:
             raise
         return 1
 
