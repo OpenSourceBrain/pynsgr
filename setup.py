@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='pynsgr',
 
-    version='0.9.2',
+    version='0.9.3',
 
     description='Neuroscience Gateway REST API Client - based on CIPRES REST API Client',
 
@@ -35,8 +35,8 @@ setup(name='pynsgr',
     ],
 
     scripts=[
-        "bin/nsgr_submit.py",
-        "bin/nsgr_job.py",
+        "bin/nsgr_submit",
+        "bin/nsgr_job",
     ],
 
     packages=['pynsgr'],

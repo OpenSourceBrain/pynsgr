@@ -21,7 +21,7 @@ sys.stdout.flush()
 
 def nsgr_job(argv):
     """
-    nsgr_job.py OPTIONS 
+    nsgr_job OPTIONS 
 
     Where OPTIONS are:
 
@@ -44,13 +44,13 @@ def nsgr_job(argv):
         the job if it's waiting to run or running.
 
     For example:
-        nsgr_job.py -l
+        nsgr_job -l
             list the user's jobs
-        nsgr_job.py -j JOBHANDLE
+        nsgr_job -j JOBHANDLE
             shows status of the job whose jobhandle is JOBHANDLE
-        nsgr_job.py -j JOBHANDLE -d
+        nsgr_job -j JOBHANDLE -d
             download's results of the job whose jobhandle is JOBHANDLE
-        nsgr_job.py -j JOBHANDLE -r
+        nsgr_job -j JOBHANDLE -r
             cancel and remove the specified job. 
     """
     jobHandle = None
@@ -143,7 +143,7 @@ def nsgr_job(argv):
 # Call this with the complete sys.argv array
 def nsgr_submit(argv):
     """
-        nsgr_submit.py TEMPLATE_DIRECTORY validate|run [results_directory] 
+        nsgr_submit TEMPLATE_DIRECTORY validate|run [results_directory] 
         
         Where TEMPLATE_DIRECTORY is the name of a directory that contains the job's input data files and
         two property files named testInput.properties and testParam.properties.
@@ -159,7 +159,7 @@ def nsgr_submit(argv):
         
         [results_directory]
             Absolute or relative path of a directory to which results will be downloaded.  If the directory 
-            doesn't exist, nsgr_submit.py will create it. Intermediate directories, however, will not be created.
+            doesn't exist, nsgr_submit will create it. Intermediate directories, however, will not be created.
             If results_directory isn't specified, the default is directory name is ./jobhandle where jobhandle 
             is the CIPRES assigned job handle, a long guid, starting with "NGBW-".
     """

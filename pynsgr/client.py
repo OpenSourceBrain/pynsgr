@@ -23,6 +23,8 @@ requests.packages.urllib3.disable_warnings()
 # verbose is enabled/disabled via property file.  See main() below.
 verbose=False
 
+CONF_FILENAME = 'nsgrest.conf'
+
 def _prefixProperty(property, prefix):
     if property.startswith(prefix):
         return property
@@ -417,27 +419,30 @@ class Application(object):
     def __init__(self):
         found = False
         self.props = Props.Properties()
-        confFile = os.path.expandvars(os.path.join("$SDK_VERSIONS", "testdata", "pycipres.conf"));
-        found = True
+        confFile = os.path.expandvars(os.path.join("$SDK_VERSIONS", "testdata", CONF_FILENAME));
         try:
             with open(confFile) as infile:
                 self.props.load(infile)
+                
+            found = True
         except IOError as e:
             pass
 
-        confFile = os.path.join(os.path.expanduser("~"), "pycipres.conf");
-        found = True
+        confFile = os.path.join(os.path.expanduser("~"), CONF_FILENAME);
         try:
             with open(confFile) as infile:
                 self.props.load(infile)
+            found = True
         except IOError as e:
             pass
-
-        if not found:
-            raise Exception("Didn't find pycipres.conf in $SDK_VERSIONS or in home directory.")
+        
         requiredProperties = set(["APPNAME", "APPID", "USERNAME", "PASSWORD", "URL"])
+        if not found:
+            raise Exception("Didn't find the file: %s (which should contain properties %s) in $SDK_VERSIONS or in the home directory."%(CONF_FILENAME,requiredProperties))
+        
+        
         if not requiredProperties.issubset(self.props.propertyNames()):
-            raise Exception("pycipres.conf doesn't contain all the required properties: %s" % ', '.join(requiredProperties))
+            raise Exception("%s doesn't contain all the required properties: %s" % (CONF_FILENAME,', '.join(requiredProperties)))
         # if self.props.VERBOSE:
             # self.props.list()
         print("URL=%s" % (self.props.URL))
