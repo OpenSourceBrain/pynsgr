@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='pynsgr',
 
-    version='0.9.3',
+    version='0.9.4',
 
     description='Neuroscience Gateway REST API Client - based on CIPRES REST API Client',
 
