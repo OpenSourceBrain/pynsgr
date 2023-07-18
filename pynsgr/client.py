@@ -418,8 +418,9 @@ class Application(object):
 
     def __init__(self):
         found = False
+        OSB2_USER_DIR = "/opt/user" # OSBv2 user's directory shared across all their workspaces
         self.props = Props.Properties()
-        confFile = os.path.expandvars(os.path.join("$SDK_VERSIONS", "testdata", CONF_FILENAME));
+        confFile = os.path.expandvars(os.path.join(OSB2_USER_DIR, CONF_FILENAME)) 
         try:
             with open(confFile) as infile:
                 self.props.load(infile)
@@ -438,7 +439,7 @@ class Application(object):
         
         requiredProperties = set(["APPNAME", "APPID", "USERNAME", "PASSWORD", "URL"])
         if not found:
-            raise Exception("Didn't find the file: %s (which should contain properties %s) in $SDK_VERSIONS or in the home directory."%(CONF_FILENAME,requiredProperties))
+            raise Exception("Didn't find the file: %s (which should contain properties %s) in user's the home directory (or %s on Open Source Brain v2)."%(CONF_FILENAME,requiredProperties, OSB2_USER_DIR))
         
         
         if not requiredProperties.issubset(self.props.propertyNames()):

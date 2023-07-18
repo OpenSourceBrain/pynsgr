@@ -1,3 +1,4 @@
 /build
 /python_cipres.egg-info
 /pynsgr.egg-info
+.DS_Store
