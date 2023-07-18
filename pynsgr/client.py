@@ -310,15 +310,15 @@ class JobStatus(object):
         """ A debugging method to dump some of the content of this object to stdout """
 
         if not self.jobHandle and self.commandline:
-            print("Submission validated.  Commandline is: '%s'" % (self.commandline))
+            print("Submission validated.  Command line is: '%s'" % (self.commandline))
             return
 
-        str = "Job=%s" % (self.jobHandle)
+        str = "Job %s" % (self.jobHandle)
         if self.terminalStage:
             if self.failed:
-                str += ", failed at stage %s" % (self.jobStage)
+                str += " failed at stage %s" % (self.jobStage)
             else:
-                str += ", finished, results are at %s" % (self.resultsUrl)
+                str += " finished"
         else:
             str += ", not finished, stage=%s" % (self.jobStage)
         print(str)
@@ -444,9 +444,10 @@ class Application(object):
         
         if not requiredProperties.issubset(self.props.propertyNames()):
             raise Exception("%s doesn't contain all the required properties: %s" % (CONF_FILENAME,', '.join(requiredProperties)))
-        # if self.props.VERBOSE:
-            # self.props.list()
-        print("URL=%s" % (self.props.URL))
+        
+        if self.props.VERBOSE:
+            self.props.list()
+            print("URL=%s" % (self.props.URL))
 
     def getProperties(self):
         return self.props

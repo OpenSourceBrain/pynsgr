@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(name='pynsgr',
 
-    version='0.9.4',
+    version='0.9.5',
 
     description='Neuroscience Gateway REST API Client - based on CIPRES REST API Client',
 
     long_description = open('README.md').read(),
-    
+
     long_description_content_type="text/markdown",
 
     url='https://github.com/OpenSourceBrain/pynsgr',
@@ -31,9 +31,7 @@ setup(name='pynsgr',
 
 
     install_requires=[
-        "pymysql >= 0.5",
         "requests >= 2.5.3",
-        "pystache >= 0.5.3",
     ],
 
     scripts=[

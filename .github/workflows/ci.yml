@@ -32,6 +32,16 @@ jobs:
       run: |
         pip install .
 
+    - name: Test listing
+      run: |
+        nsgr_job # print usage
+        
+        nsgr_job -l # will fail with error about config file
+
+    - name: Test submitting
+      run: |
+        nsgr_submit # print usage
+
     - name: Final version info
       run: |
         pip list
