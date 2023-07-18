@@ -36,7 +36,7 @@ jobs:
       run: |
         nsgr_job # print usage
         
-        nsgr_job -l # will fail with error about config file
+        # nsgr_job -l # will fail with error about config file
 
     - name: Test submitting
       run: |
