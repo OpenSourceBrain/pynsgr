@@ -7,6 +7,8 @@ setup(name='pynsgr',
     description='Neuroscience Gateway REST API Client - based on CIPRES REST API Client',
 
     long_description = open('README.md').read(),
+    
+    long_description_content_type="text/markdown",
 
     url='https://github.com/OpenSourceBrain/pynsgr',
 
