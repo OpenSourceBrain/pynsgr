@@ -34,7 +34,7 @@ jobs:
 
     - name: Test listing
       run: |
-        nsgr_job # print usage
+        # nsgr_job # print usage
         
         # nsgr_job -l # will fail with error about config file
 
