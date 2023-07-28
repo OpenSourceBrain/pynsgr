@@ -34,9 +34,9 @@ jobs:
 
     - name: Set up config
       env:
-        NSGR_USERNAME: ${{ secrets.NSG_USERNAME }}
-        NSGR_PASSWORD: ${{ secrets.NSG_PASSWORD }}
-        NSGR_APPID: ${{ secrets.NSG_APPID }}
+        NSGR_USERNAME: ${{ secrets.NSGR_USERNAME }}
+        NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
+        NSGR_APPID: ${{ secrets.NSGR_APPID }}
       run: |
         echo "APPNAME=PY_EXPANSE" > ~/nsgrest.conf
         echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> ~/nsgrest.conf
