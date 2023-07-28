@@ -54,5 +54,5 @@ jobs:
 
     - name: Test submission
       run: |
-        cd examples/ && nsgr_submit . validate
+        cd example/ && nsgr_submit . validate
         nsgr_submit . run && cat NGBW*/example_dir/output.txt
