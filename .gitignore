@@ -5,3 +5,5 @@
 /dist
 /release.*
 example/NGBW*
+/example/output
+/example/makezip.sh
