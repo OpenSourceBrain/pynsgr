@@ -11,14 +11,29 @@ Python interface to the [NeuroScience Gateway REST interface](http://www.nsgport
 
 ## Quick start guide
 
-1. Install this package locally
+### Creating an account on NSGR
+
+Please head to the [NSGR web portal](https://nsgr.sdsc.edu:8443/restusers/login.action) to create an account.
+Documentation there includes the list of [available tools](https://nsgr.sdsc.edu:8443/restusers/docs/tools) and other information.
+A [tutorial](http://www.nsgportal.org/qs.html) is available, and so is a [complete user guide](http://www.nsgportal.org/guide.html).
+
+Once you have created an account, you must create a new "application" to be able to use the REST API:
+
+- login, click "Developer" > "Application management"
+- click "create new application"
+- fill in the form: please use the "DIRECT" authentication type
+
+This will create the application for you and create an application ID for you to use (see below).
+
+### Using this package
+
+1. Install this package directly using `pip`:
 
 ```
 pip install pynsgr
 ```
 
-
-or from source:
+or from source (to get the latest development version, for example):
 
 ```
 git clone https://github.com/OpenSourceBrain/pynsgr
@@ -26,9 +41,7 @@ cd pynsgr
 pip install .
 ```
 
-2. Sign in and register for an NSG account [here](https://www.nsgportal.org/gest/reg.php).
-
-3. Update `~/nsgrest.conf` with:
+2. Update `~/nsgrest.conf` with your account and application information:
 
 ```
 URL=https://nsgr.sdsc.edu:8443/cipresrest/v1
@@ -38,8 +51,25 @@ APPID=<YOUR_APPID>
 APPNAME=PY_EXPANSE
 ```
 
-4. Try listing your jobs
+3. Try listing your jobs
 
 ```
- nsgr_job -l
+nsgr_job -l
 ```
+
+4. Submit a job
+
+```
+nsgr_submit <directory> validate
+nsgr_submit <directory> run
+```
+
+For more information on what the tools do, use the `-h` option:
+
+````
+nsgr_submit -h
+nsgr_job -h
+````
+
+where `<directory>` contains the zipped code to run, and the two properties files.
+See the `example` folder for an example of this and configuration files that are used.

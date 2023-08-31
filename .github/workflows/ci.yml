@@ -22,26 +22,40 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-        
+
     - name: Install
       run: |
         pip install .
 
-    - name: Test listing
+    - name: Set up config
+      env:
+        NSGR_USERNAME: ${{ secrets.NSGR_USERNAME }}
+        NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
+        NSGR_APPID: ${{ secrets.NSGR_APPID }}
       run: |
-        nsgr_job -h # print usage
-        
-        # nsgr_job -l # will fail with error about config file
+        echo "APPNAME=PY_EXPANSE" > ~/nsgrest.conf
+        echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> ~/nsgrest.conf
 
-    - name: Test submitting
-      run: |
-        # nsgr_submit # print usage
+        more ~/nsgrest.conf # print contents so far...
 
-    - name: Final version info
+        echo "USERNAME=${NSGR_USERNAME}" >> ~/nsgrest.conf
+        echo "PASSWORD=${NSGR_PASSWORD}" >> ~/nsgrest.conf
+        echo "APPID=${NSGR_APPID}" >> ~/nsgrest.conf
+
+    - name: Version info
       run: |
         pip list
+
+    - name: Test listing
+      run: |
+        nsgr_job -l
+
+    - name: Test submission        
+      if: ${{ matrix.runs-on != 'windows-latest' }}
+      run: |
+        cd example/ && nsgr_submit . validate && nsgr_submit . run && cd NGBW* && tar -xvf output.tar.gz && echo ; echo ; echo "Output file contents:" ; echo && cat example_dir/output.txt
