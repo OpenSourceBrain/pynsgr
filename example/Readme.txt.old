@@ -1,7 +1,7 @@
 OVERVIEW
 ----------
 
-This directory has a number of example "job template" directories that you can submit to 
+This directory has a number of example "job template" directories that you can submit to
 the CIPRES REST API using tooltest.py.   Here are some examples of how to run tooltest.py
 and cipresjob.py.
 
@@ -9,7 +9,7 @@ tooltest.py clustalw run ./myresults
 	Submits the job specified in the "clustalw" subdirectory.  Waits for
 	the job to finish and downloads the results to a subdirectory named "myresults".
 
-tooltest.py clustalw validate 
+tooltest.py clustalw validate
 	Submits the job specified in the "clustalw" subdirectory but just
 	asks the REST API to validate the submission without actually running the job.
 
@@ -17,7 +17,7 @@ cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08
 	Returns the status of the job with the specified jobhandle.  Tooltest.py prints
 	out the jobhandle after submitting a job.
 
-cipresjob.py -l 
+cipresjob.py -l
 	Lists jobs.
 
 cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08 -d ./myresults
@@ -25,7 +25,7 @@ cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08 -d ./myr
 	If the job has not finished running yet this will download the contents of the
 	job's working directory.
 
-cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08 -r 
+cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08 -r
 	Deletes the specified job.  This will also cancel the job if it is currently
 	running or queued to run.
 
@@ -40,7 +40,7 @@ all the inputs in dictionaries instead of using a template directory.
 
 Job template directories must contain 2 property files: testInput.properties and testParam.properties.
 testInput.properties gives the properties that refer to input files for the job and
-testParam.properties gives the "visible" parameters.  Please refer to 
+testParam.properties gives the "visible" parameters.  Please refer to
 https://www.phylo.org/restusers/docs/guide.html (especially "Submit Jobs" and "Tool Specific
 Parameters" sections) for an explanation of the types of parameters and https://www.phylo.org/restusers/docs/tools
 for a description of the specific parameters that can be used with each tool.
@@ -59,9 +59,9 @@ Here's an extended example:
 
 If you need to stop tooltest.py before the job you submitted is finished, or if tooltest.py
 encounters a transient error (like being unable to connect to CIPRES) before the job is finished,
-you can use cipresjob.py to check the job's status and then download the results once the job 
+you can use cipresjob.py to check the job's status and then download the results once the job
 is finshed.   In the example below, we type ^C to stop tooltest.py, then use cipresjob.py to
-get the job's results:  
+get the job's results:
 
 SUBMIT A JOB:
 $ tooltest.py raxml_ancestral_states run results2
@@ -102,9 +102,9 @@ Job=NGBW-JOB-RAXMLHPC2_TGB-F56624C0AA0C408681F4805A3CD0F869, finished, results a
 	2014-12-17T15:46:06-08:00: Submitted to trestles as job '2411423'.
 	2014-12-17T15:47:44-08:00: Trying to transfer results.
 	2014-12-17T15:49:04-08:00: Output files retrieved.  Task is finished.
- 
+
 
 DOWNLOAD THE RESULTS:
 $ cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-F56624C0AA0C408681F4805A3CD0F869 -d results2
 Downloading final results to /Users/terri/examples/results2
-$ 
+$
