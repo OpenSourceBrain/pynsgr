@@ -56,6 +56,6 @@ jobs:
         nsgr_job -l
 
     - name: Test submission        
-      if: ${{ matrix.runs-on == 'windows-latest' }}
+      if: ${{ matrix.runs-on != 'windows-latest' }}
       run: |
         cd example/ && nsgr_submit . validate && nsgr_submit . run && cd NGBW* && tar -xvf output.tar.gz && echo ; echo ; echo "Output file contents:" ; echo && cat example_dir/output.txt
