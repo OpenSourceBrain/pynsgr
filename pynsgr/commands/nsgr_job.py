@@ -15,22 +15,30 @@ import requests
 
 
 def nsgr_job(argv):
-    """
+    f"""
     nsgr_job OPTIONS
 
     Where OPTIONS are:
 
     -h
         help
+    -c
+        path to config file
+
+        By default, it looks in the users's home directory (~) for .{CipresClient.CONF_FILENAME}, then for {CipresClient.CONF_FILENAME} (without a dot)
+
     -l
         list all the user's jobs
+
     -j JOBHANDLE
         choose a job to act upon.  If no other action (like download) is selected, shows the job's status.
+
     -d results_directory
         download job results to specified directory.  Directory (but not intermediate directories) will
         be created if it doesn't exist.
 
         Use with -j to specify the job.
+
     -v
         verbose (use with -l to get a verbose job listing)
 
@@ -48,18 +56,21 @@ def nsgr_job(argv):
         nsgr_job -j JOBHANDLE -r
             cancel and remove the specified job.
     """
+    conf_filepath = None
     jobHandle = None
     verbose = False
     action = "status"
     resultsdir = None
     try:
-        options, remainder = getopt.getopt(argv[1:], "j:hld:vr")
+        options, remainder = getopt.getopt(argv[1:], "j:hld:vrc:")
     except getopt.GetoptError as ge:
         print(ge)
         return 1
     for opt, arg in options:
         if opt in ("-j"):
             jobHandle = arg
+        elif opt in ("-c"):
+            conf_filepath = arg
         elif opt in ("-h"):
             print((nsgr_job.__doc__))
             return 0
@@ -73,7 +84,7 @@ def nsgr_job(argv):
         elif opt in ("-v"):
             verbose = True
 
-    properties = CipresClient.Application().getProperties()
+    properties = CipresClient.Application(conf_filepath).getProperties()
     client = CipresClient.Client(
         properties.APPNAME,
         properties.APPID,
