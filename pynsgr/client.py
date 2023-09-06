@@ -453,7 +453,7 @@ class Application(object):
             raise
     """
 
-    def __init__(self, conf_filepath):
+    def __init__(self, conf_filepath=None):
         found = False
         OSB2_USER_DIR = (
             "/opt/user"  # OSBv2 user's directory shared across all their workspaces
