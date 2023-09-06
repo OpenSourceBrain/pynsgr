@@ -15,7 +15,7 @@ import requests
 
 
 def nsgr_job(argv):
-    f"""
+    """
     nsgr_job OPTIONS
 
     Where OPTIONS are:
@@ -25,7 +25,7 @@ def nsgr_job(argv):
     -c
         path to config file
 
-        By default, it looks in the users's home directory (~) for .{CipresClient.CONF_FILENAME}, then for {CipresClient.CONF_FILENAME} (without a dot)
+        By default, it looks in the users's home directory (~) for .nsgrest.conf, then for nsgrest.conf (without a dot)
 
     -l
         list all the user's jobs
