@@ -453,7 +453,7 @@ class Application(object):
             raise
     """
 
-    def __init__(self):
+    def __init__(self, conf_filepath=None):
         found = False
         OSB2_USER_DIR = (
             "/opt/user"  # OSBv2 user's directory shared across all their workspaces
@@ -465,22 +465,41 @@ class Application(object):
                 self.props.load(infile)
 
             found = True
-        except IOError as e:
+        except IOError:
             pass
 
+        if conf_filepath is not None:
+            try:
+                with open(conf_filepath) as infile:
+                    self.props.load(infile)
+                found = True
+            except IOError:
+                print(f"Could not find specified configuration file at {conf_filepath}, trying default locations.")
+                pass
+
+        # look for ~/.CONF_FILENAME
+        confFile = os.path.join(os.path.expanduser("~"), f".{CONF_FILENAME}")
+        try:
+            with open(confFile) as infile:
+                self.props.load(infile)
+            found = True
+        except IOError:
+            pass
+
+        # look for ~/CONF_FILENAME (no dot)
         confFile = os.path.join(os.path.expanduser("~"), CONF_FILENAME)
         try:
             with open(confFile) as infile:
                 self.props.load(infile)
             found = True
-        except IOError as e:
+        except IOError:
             pass
 
         requiredProperties = set(["APPNAME", "APPID", "USERNAME", "PASSWORD", "URL"])
         if not found:
             raise Exception(
-                "Didn't find the file: %s (which should contain properties %s) in user's the home directory (or %s on Open Source Brain v2)."
-                % (CONF_FILENAME, requiredProperties, OSB2_USER_DIR)
+                "Didn't find the file: ~/.%s or ~/%s (which should contain properties %s) or %s/%s on Open Source Brain v2."
+                % (CONF_FILENAME, CONF_FILENAME, requiredProperties, OSB2_USER_DIR, CONF_FILENAME)
             )
 
         if not requiredProperties.issubset(self.props.propertyNames()):

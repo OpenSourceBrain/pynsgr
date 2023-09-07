@@ -20,6 +20,11 @@ def nsgr_submit(argv):
     Where TEMPLATE_DIRECTORY is the name of a directory that contains the job's input data files and
     two property files named testInput.properties and testParam.properties.
 
+    -c
+        path to config file
+
+        By default, it looks in the users's home directory (~) for .nsgrest.conf, then for nsgrest.conf (without a dot)
+
     validate
         Ask's the REST API whether the job is valid.  If valid, prints to stdout, the command line that
         would be run on the execution host if the job were submitted to run.  If invalid, prints an
@@ -39,6 +44,16 @@ def nsgr_submit(argv):
     if not argv or len(argv) < 3:
         print(nsgr_submit.__doc__)
         return 1
+
+    # get config file path and remove from list
+    try:
+        c_path = argv.index("-c")
+        argv.pop(c_path)
+        conf_filepath = argv[c_path]
+        argv.pop(c_path)
+    except ValueError:
+        conf_filepath = None
+
     template = argv[1]
     action = argv[2]
     if not os.path.isdir(template):
@@ -53,7 +68,7 @@ def nsgr_submit(argv):
     if len(argv) > 3:
         resultsdir = argv[3]
 
-    properties = CipresClient.Application().getProperties()
+    properties = CipresClient.Application(conf_filepath).getProperties()
     client = CipresClient.Client(
         properties.APPNAME,
         properties.APPID,
@@ -106,7 +121,7 @@ def nsgr_submit(argv):
 # required because console scripts cannot take argument lists
 def main():
     """Main runner"""
-    nsgr_submit(sys.argv)
+    sys.exit(nsgr_submit(sys.argv))
 
 
 if __name__ == "__main__":
