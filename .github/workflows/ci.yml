@@ -32,7 +32,7 @@ jobs:
       run: |
         pip install .
 
-    - name: Set up config: non windows
+    - name: Set up config non windows
       env:
         NSGR_USERNAME: ${{ secrets.NSGR_USERNAME }}
         NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
@@ -48,7 +48,7 @@ jobs:
         echo "PASSWORD=${NSGR_PASSWORD}" >> nsgrest.conf
         echo "APPID=${NSGR_APPID}" >> nsgrest.conf
 
-    - name: Set up config: windows
+    - name: Set up config windows
       env:
         NSGR_USERNAME: ${{ secrets.NSGR_USERNAME }}
         NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
@@ -72,12 +72,12 @@ jobs:
       run: |
         nsgr_job -c nsgrest.conf -l
 
-    - name: Test submission: non windows
+    - name: Test submission non windows
       if: ${{ matrix.runs-on != 'windows-latest'  }}
       run: |
         cd example && nsgr_submit -c ../nsgrest.conf . validate && nsgr_submit -c ../nsgrest.conf . run && cd NGBW* && tar -xvf output.tar.gz && echo "" && echo "" && echo "Output file contents:" && echo "" && cd example_dir && cat output.txt
 
-    - name: Test submission: windows
+    - name: Test submission windows
       if: ${{ matrix.runs-on == 'windows-latest'  }}
       run: |
         cd example && nsgr_submit -c ..\nsgrest.conf . validate && nsgr_submit -c ..\nsgrest.conf . run && cd NGBW* && tar -xvf output.tar.gz && echo "" && echo "" &&  echo "Output file contents:" && echo "" && cd example_dir && cat output.txt
