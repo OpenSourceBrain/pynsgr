@@ -58,9 +58,9 @@ jobs:
         echo "APPNAME=PY_EXPANSE" > nsgrest.conf
         echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> nsgrest.conf
 
-        echo "USERNAME=%NSGR_USERNAME%" >> nsgrest.conf
-        echo "PASSWORD=%NSGR_PASSWORD%" >> nsgrest.conf
-        echo "APPID=%NSGR_APPID%" >> nsgrest.conf
+        echo "USERNAME="%NSGR_USERNAME% >> nsgrest.conf
+        echo "PASSWORD="%NSGR_PASSWORD% >> nsgrest.conf
+        echo "APPID="%NSGR_APPID% >> nsgrest.conf
 
         more nsgrest.conf # print contents so far...
 
