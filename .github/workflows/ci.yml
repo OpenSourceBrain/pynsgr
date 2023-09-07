@@ -58,9 +58,12 @@ jobs:
         echo "APPNAME=PY_EXPANSE" > nsgrest.conf
         echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> nsgrest.conf
 
-        echo USERNAME=%NSGR_USERNAME% >> nsgrest.conf
-        echo PASSWORD=%NSGR_PASSWORD% >> nsgrest.conf
-        echo APPID=%NSGR_APPID% >> nsgrest.conf
+        $outtext_username = "USERNAME=$($env:NSGR_USERNAME)"
+        $outtext_username | Out-File -FilePath "nsgrest.conf" -Append
+        $outtext_password = "PASSWORD=$($env:NSGR_PASSWORD)"
+        $outtext_password | Out-File -FilePath "nsgrest.conf" -Append
+        $outtext_appid = "APPID=$($env:NSGR_APPID)"
+        $outtext_appid | Out-File -FilePath "nsgrest.conf" -Append
 
         more nsgrest.conf # print contents so far...
 
