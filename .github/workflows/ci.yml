@@ -37,7 +37,7 @@ jobs:
         NSGR_USERNAME: ${{ secrets.NSGR_USERNAME }}
         NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
         NSGR_APPID: ${{ secrets.NSGR_APPID }}
-      if: ${{ matrix.runs-on == 'windows-latest'  }}
+      if: ${{ matrix.runs-on != 'windows-latest'  }}
       run: |
         echo "APPNAME=PY_EXPANSE" > nsgrest.conf
         echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> nsgrest.conf
