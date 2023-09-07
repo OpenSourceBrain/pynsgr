@@ -39,6 +39,16 @@ def nsgr_submit(argv):
     if not argv or len(argv) < 3:
         print(nsgr_submit.__doc__)
         return 1
+
+    # get config file path and remove from list
+    try:
+        c_path = argv.index("-c")
+        argv.pop(c_path)
+        conf_filepath = argv[c_path]
+        argv.pop(c_path)
+    except ValueError:
+        conf_filepath = None
+
     template = argv[1]
     action = argv[2]
     if not os.path.isdir(template):
@@ -53,7 +63,7 @@ def nsgr_submit(argv):
     if len(argv) > 3:
         resultsdir = argv[3]
 
-    properties = CipresClient.Application().getProperties()
+    properties = CipresClient.Application(conf_filepath).getProperties()
     client = CipresClient.Client(
         properties.APPNAME,
         properties.APPID,
