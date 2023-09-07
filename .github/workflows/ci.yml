@@ -38,14 +38,14 @@ jobs:
         NSGR_PASSWORD: ${{ secrets.NSGR_PASSWORD }}
         NSGR_APPID: ${{ secrets.NSGR_APPID }}
       run: |
-        echo "APPNAME=PY_EXPANSE" > ~/nsgrest.conf
-        echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> ~/nsgrest.conf
+        echo "APPNAME=PY_EXPANSE" > ./nsgrest.conf
+        echo "URL=https://nsgr.sdsc.edu:8443/cipresrest/v1" >> ./nsgrest.conf
 
-        more ~/nsgrest.conf # print contents so far...
+        more ./nsgrest.conf # print contents so far...
 
-        echo "USERNAME=${NSGR_USERNAME}" >> ~/nsgrest.conf
-        echo "PASSWORD=${NSGR_PASSWORD}" >> ~/nsgrest.conf
-        echo "APPID=${NSGR_APPID}" >> ~/nsgrest.conf
+        echo "USERNAME=${NSGR_USERNAME}" >> ./nsgrest.conf
+        echo "PASSWORD=${NSGR_PASSWORD}" >> ./nsgrest.conf
+        echo "APPID=${NSGR_APPID}" >> ./nsgrest.conf
 
     - name: Version info
       run: |
@@ -53,9 +53,8 @@ jobs:
 
     - name: Test listing
       run: |
-        nsgr_job -l
+        nsgr_job -c ./nsgrest.conf -l
 
-    - name: Test submission        
-      if: ${{ matrix.runs-on != 'windows-latest' }}
+    - name: Test submission
       run: |
-        cd example/ && nsgr_submit . validate && nsgr_submit . run && cd NGBW* && tar -xvf output.tar.gz && echo ; echo ; echo "Output file contents:" ; echo && cat example_dir/output.txt
+        cd example/ && nsgr_submit -c ./nsgrest.conf . validate && nsgr_submit -c ./nsgrest.conf . run && cd NGBW* && tar -xvf output.tar.gz && echo ; echo ; echo "Output file contents:" ; echo && cat example_dir/output.txt
