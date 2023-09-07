@@ -121,7 +121,7 @@ def nsgr_submit(argv):
 # required because console scripts cannot take argument lists
 def main():
     """Main runner"""
-    nsgr_submit(sys.argv)
+    sys.exit(nsgr_submit(sys.argv))
 
 
 if __name__ == "__main__":

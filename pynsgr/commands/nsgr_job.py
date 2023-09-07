@@ -154,12 +154,13 @@ def nsgr_job(argv):
     except ET.ParseError as pe:
         print("Unexpected response cannot be parsed.  Parsing error message: %s" % (pe))
         return 2
+    return 0
 
 
 # required because console scripts cannot take argument lists
 def main():
     """Main runner"""
-    nsgr_job(sys.argv)
+    sys.exit(nsgr_job(sys.argv))
 
 
 if __name__ == "__main__":
