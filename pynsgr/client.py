@@ -399,7 +399,7 @@ class JobStatus(object):
         return resultFiles
 
     def downloadResults(self, directory=None, final=True):
-        """Downloads all result files to specified, existant directory, or current directory.  Set final=False
+        """Downloads all result files to specified, existent directory, or current directory.  Set final=False
         if you want to download files from the working dir before the job has finished.  Once the job is finished
         use final=True to download the final results."""
         resultFiles = self.listResults(final=final)
