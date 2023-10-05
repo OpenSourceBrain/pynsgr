@@ -33,7 +33,7 @@ cipresjob.py -j NGBW-JOB-RAXMLHPC2_TGB-00580C183D2D44C99F5FECCD6ADA2A08 -r
 JOB TEMPLATE
 -------------
 
-The command line progams tooltest.py and cipresjob.py look for the job's input data and
+The command line programs tooltest.py and cipresjob.py look for the job's input data and
 configuration parameters in a job template directory.  However, the python_cipres library
 that is used to implement these programs, and that you can use directly, lets you specify
 all the inputs in dictionaries instead of using a template directory.
@@ -60,7 +60,7 @@ Here's an extended example:
 If you need to stop tooltest.py before the job you submitted is finished, or if tooltest.py
 encounters a transient error (like being unable to connect to CIPRES) before the job is finished,
 you can use cipresjob.py to check the job's status and then download the results once the job
-is finshed.   In the example below, we type ^C to stop tooltest.py, then use cipresjob.py to
+is finished.   In the example below, we type ^C to stop tooltest.py, then use cipresjob.py to
 get the job's results:
 
 SUBMIT A JOB:
