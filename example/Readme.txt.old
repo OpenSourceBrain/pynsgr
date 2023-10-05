@@ -2,7 +2,7 @@ OVERVIEW
 ----------
 
 This directory has a number of example "job template" directories that you can submit to
-the CIPRES REST API using tooltest.py.   Here are some examples of how to run tooltest.py
+the CIPRES REST API using tooltest.py.  Here are some examples of how to run tooltest.py
 and cipresjob.py.
 
 tooltest.py clustalw run ./myresults
@@ -46,7 +46,7 @@ Parameters" sections) for an explanation of the types of parameters and https://
 for a description of the specific parameters that can be used with each tool.
 
 With python_cipres, the "input.", "vparam." and "metadata" prefixes mentioned in the User Guide
-can be omitted and the tool can be specified with either "tool" or "toolId" properties.   When you
+can be omitted and the tool can be specified with either "tool" or "toolId" properties.  When you
 use the python_cipres library from your own code, you can supply metadata, including a flag
 that tells Cipres to send you email when the job is finished.  However, there is no way to
 supply metadata when using tooltest.py with a job template directory.
@@ -60,7 +60,7 @@ Here's an extended example:
 If you need to stop tooltest.py before the job you submitted is finished, or if tooltest.py
 encounters a transient error (like being unable to connect to CIPRES) before the job is finished,
 you can use cipresjob.py to check the job's status and then download the results once the job
-is finished.   In the example below, we type ^C to stop tooltest.py, then use cipresjob.py to
+is finished.  In the example below, we type ^C to stop tooltest.py, then use cipresjob.py to
 get the job's results:
 
 SUBMIT A JOB:

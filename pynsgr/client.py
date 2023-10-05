@@ -383,7 +383,7 @@ class JobStatus(object):
         pass
 
     def listResults(self, final=True):
-        """Returns dictionary where key is filename and value is a ResultFile object.   If job isn't
+        """Returns dictionary where key is filename and value is a ResultFile object.  If job isn't
         finished yet and you want a list of what's in the job's working dir, use "final=False", though
         be aware that the working dir is transient and only exists once the job has been staged to the
         execution host and before it's been cleaned up."""
