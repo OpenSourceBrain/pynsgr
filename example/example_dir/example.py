@@ -8,6 +8,9 @@ Copyright 2023 OSB contributors
 
 
 from netpyne import specs
+from netpyne import sim
+from netpyne import __version__ as version
+
 import sys
 import pkg_resources
 
@@ -20,6 +23,10 @@ if __name__ == "__main__":
         dists = [str(d).replace(" ", "==") for d in pkg_resources.working_set]
         for i in dists:
             print(i, file=f)
+
+    for k in sys.modules.keys():
+        if "matplotlib" in k:
+            print(f"matplotlib still loaded: {k}")
 
     print(f"Args are: {sys.argv}")
     if sys.argv.count("-nogui") > 0:
