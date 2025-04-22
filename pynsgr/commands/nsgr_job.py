@@ -50,9 +50,9 @@ def nsgr_job(argv):
         nsgr_job -l
             list the user's jobs
         nsgr_job -j JOBHANDLE
-            shows status of the job whose jobhandle is JOBHANDLE
+            shows status of the job whose job handle is JOBHANDLE
         nsgr_job -j JOBHANDLE -d
-            download's results of the job whose jobhandle is JOBHANDLE
+            downloads results of the job whose job handle is JOBHANDLE
         nsgr_job -j JOBHANDLE -r
             cancel and remove the specified job.
     """
